@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+    <title>Web Chat</title>
+    <script src="http://localhost:8000/socket.io/socket.io.js"></script>
+    <script src="js/client.js"></script>
+
+    <style>
+        body{
+            height: auto;
+            /* background-image: linear-gradient(132deg, #244245, transparent); */
+            background-image: url("bga.jpg");
+            background-repeat: none;
+            background-size: 127em;
+            background-position-x: right;
+        }
+        .window {
+            /* float: left; */
+            max-width: 40%;
+            margin: -1px;
+            height: 60vh;
+            border-radius: 0.1rem;
+            border: 0.3rem groove gray;
+            border-left:10px solid black ;
+            border-top: 10px solid black;
+            overflow-y:auto;
+            padding: 1rem;
+        }
+
+        /* input and send message */
+    #all{
+        width: 92%;
+        /* border: 0.2rem solid black; */
+        border-radius: 0.6rem;
+        height: 2rem;
+        margin: 0.3rem auto;    
+    }    
+    #input{
+    margin-left:-1.5rem;
+    height: 1.5rem;
+    width: 37%;
+    float: left;
+    border: 3px solid black;
+    
+    }
+    #btn{
+       border: 3px solid blue;
+       width: 70px;
+       height: 2rem;
+       border-radius: 5px;
+       box-shadow: 3px 3px rgb(161, 156, 156);
+       cursor: pointer;
+    }
+    #btn:hover{
+        background-color:darkgray;
+    }
+
+
+       /* logo */
+    
+        #logo{
+            filter:invert();
+            width: 5%;
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+            border-top-right-radius: 40px;
+            margin-top:1% ;
+            display: block;
+            margin:auto;
+        }
+
+
+
+       
+        ul{
+            /* display: inline-block; */
+            top: px;
+            float:right;
+            margin-top: 2%;
+
+        }       
+        ul a{
+
+            margin:10px;
+            border: 2px solid #1f307c;
+            border-radius: 8px;
+            background-color: darkgray;
+            font-size: x-large;
+            padding: 4px;
+            color: rgb(10, 219, 247);
+            text-decoration:none;
+        }
+        ul a:hover{
+            color: rgb(255, 51, 0);
+            
+        }
+        
+
+
+
+
+
+        /* messages display  */
+
+
+        .msglout{
+            border: 0.2rem solid rgb(9, 10, 10);
+            margin:0.8rem ;
+            border-radius: 0.5rem;
+            width:5rem;
+            background-color:darkgray
+            
+        }
+        #left {
+            float: left;
+            clear: both;
+            width: auto;
+            padding: 0.5rem;
+            color: rgb(7, 8, 8);
+        }
+
+        #right {
+            float: right;
+            clear: both;
+            width: auto;
+ 
+            padding: 0.5rem;
+            color: rgb(3, 3, 3);
+            
+        }
+        
+
+        /* footer */
+        #footer{
+            display: block;
+            margin:70px auto;
+            background-color: #244245;
+            text-align: center;
+            color: cadetblue;
+            font-size: large;
+            height:40px;
+            padding:6px;
+        }
+        #heading{
+            display: block;
+            margin:-7px -1px;
+            width: 100%;
+            /* background-image:linear-gradient(360deg, rgb(166, 255, 0), rgb(18, 189, 231)); */
+            text-align: center;
+            margin: 3px;
+            
+        }
+        #heading p{
+            font-size: 40px;
+            color: #15f8c7;
+            font-family: 'Dancing Script', cursive;
+            margin: 0 0px;
+        }
+    
+    </style>
+</head>
+<body>
+    
+    <div  id="heading">
+        <img id="logo" src="logo.jpg" alt="Website Logo" width="6%" height="6%">
+        <p>Welcome to Project Chat</p>
+    </div>  
+    <nav>
+        <!-- <img id="logo" src="logo.jpg" alt="Website Logo" width="6%" height="6%"> -->
+        <ul>
+            <a  href="https://www.wikipedia.org/" target="_blank">Wikipedia</a>
+            <a  href="https://www.youtube.com/" target="_blank">Youtube</a>
+            <a  href="https://gaana.com/" target="_blank">Music</a>
+            <a  href="https://www.oxfordlearnersdictionaries.com/" target="_blank">Dictionary</a>
+            <a  href="https://translate.google.co.in/" target="_blank">Google Translator</a>
+            </ul>
+    </nav>    
+        
+    <div class="window">
+          <!--<div id="left" class="msglout">Hello left</div>
+           <div id="right" class="msglout">Hello right</div>
+           <div id="left" class="msglout">Hello left</div>
+           <div id="right" class="msglout">Hello right</div>
+           <div id="left" class="msglout">Hello left</div>
+           <div id="right" class="msglout">Hello right</div>
+           <div id="left" class="msglout">Hello left</div>
+           <div id="right" class="msglout">Hello right</div>
+           <div id="left" class="msglout">Hello left</div>
+           <div id="right" class="msglout">Hello right</div>
+           <div id="left" class="msglout">Hello left</div>
+           <div id="right" class="msglout">Hello right</div>
+           <div id="left" class="msglout">Hello left</div>
+           <div id="right" class="msglout">Hello right</div>
+           <div id="left" class="msglout">Hello left</div>
+           <div id="right" class="msglout">Hello right</div>
+           <div id="left" class="msglout">Hello left</div>
+           <div id="right" class="msglout">Hello right</div> -->
+    </div>
+    
+    <div>
+        <form action="#" id="all">
+            <!-- <label for="submit"></label> -->
+            <input id="input" type="text" placeholder="Type your messages">
+            <button type="submit" id="btn">Send</button>
+        </form>
+    </div>
+</body>
+<footer>
+    <div id="footer">
+        Copyright@2021 Frais Coders group.
+
+    </div>
+</footer>
+</html>
